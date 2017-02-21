@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{D2ABAB84-BF74-430A-B69E-9DC6D40DDA17}") = "Lambe_Vaishali_SSAS", "Lambe_Vaishali_SSAS\Lambe_Vaishali_SSAS.dwproj", "{41F0419D-4431-4844-8618-DF676ACF76FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41F0419D-4431-4844-8618-DF676ACF76FF}.Development|Default.ActiveCfg = Development
+		{41F0419D-4431-4844-8618-DF676ACF76FF}.Development|Default.Build.0 = Development
+		{41F0419D-4431-4844-8618-DF676ACF76FF}.Development|Default.Deploy.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
