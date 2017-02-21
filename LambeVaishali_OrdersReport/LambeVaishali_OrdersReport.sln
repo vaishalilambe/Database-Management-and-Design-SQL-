@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "LambeVaishali_OrdersReport", "LambeVaishali_OrdersReport\LambeVaishali_OrdersReport.rptproj", "{C587E1EE-8747-4220-8C43-6B3CBDB138FF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Debug|Default.ActiveCfg = Debug
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Debug|Default.Build.0 = Debug
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Debug|Default.Deploy.0 = Debug
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.DebugLocal|Default.Build.0 = DebugLocal
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Release|Default.ActiveCfg = Release
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Release|Default.Build.0 = Release
+		{C587E1EE-8747-4220-8C43-6B3CBDB138FF}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

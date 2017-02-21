@@ -1,0 +1,34 @@
+
+1.  Display the category, subcategory and count of products in each combination.
+ select c.Cat_ID,b.SubCat-ID,i.Quantity
+    from Category c
+	inner join SubCategory as b on b.SubCat_ID=c.Cat_ID
+        inner join Inventory as i on i.Prod_ID=b.Prod_ID
+
+2. Find the total sales quantity and price by store for everything in the bikes category
+select (i.Quantity*o.Total_Price),c.Cat_ID
+	from Inventory i , Order o, Category c
+        inner join SubCategory as b on b.Cat_ID=c.Cat_ID
+    where i.Prod_ID=o.Prod_ID
+
+3. Produce an inventory report of bikes by location
+select p.Prod_ID,p.Prod_Name,i.Location,s.Store_ID,l.Sup_ID
+    	from Product p, Inventory i, Store s, Suppilers l
+     where p.Prod_ID=i.Prod_ID
+    	and s.Store_ID=i.Store_ID
+        and l.Sup_ID=i.Sup_ID
+
+4. Display a list of customers that have spent more than $1000 this year
+   
+select c.Cust_ID ,Cust_Name
+from Customer c
+inner join order as o on o.Cust_ID = c.Cust_ID
+where o.Total_Price>1000
+
+5. List the customers that shop at more than one store
+select c.Cust_ID,c.Cust_Name
+from Customer c
+inner join order as o on o.Cust_ID=c.Cust_ID
+inner join Product as p on p.Prod_ID=o.Prod_ID
+inner join Inventory as i on p.Prod_ID=i.Prod_ID
+inner join Stores as s on s.Store_ID=i.Store_ID

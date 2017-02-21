@@ -1,0 +1,40 @@
+The execution was successful
+
+- Initializing Data Flow Task (Success)
+
+- Initializing Connections (Success)
+
+- Setting SQL Command (Success)
+
+- Setting Source Connection (Success)
+
+- Setting Destination Connection (Success)
+
+- Validating (Success)
+
+- Saving (Success)
+
+- Prepare for Execute (Success)
+
+- Pre-execute (Success)
+	Messages
+	* Information 0x402090dc: Data Flow Task 1: The processing of file "C:\Users\Admin\Documents\INFO6210\FinalProjectbicycle\1811.txt" has started.
+	 (SQL Server Import and Export Wizard)
+	
+
+- Executing (Success)
+
+- Copying to C:\Users\Admin\Documents\INFO6210\FinalProjectbicycle\1811.txt (Success)
+	* 23 rows transferred
+
+- Post-execute (Success)
+	Messages
+	* Information 0x402090dd: Data Flow Task 1: The processing of file "C:\Users\Admin\Documents\INFO6210\FinalProjectbicycle\1811.txt" has ended.
+	 (SQL Server Import and Export Wizard)
+	
+	* Information 0x4004300b: Data Flow Task 1: "Destination - 1811_txt" wrote 23 rows.
+	 (SQL Server Import and Export Wizard)
+	
+
+
+

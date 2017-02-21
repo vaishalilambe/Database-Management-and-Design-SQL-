@@ -1,0 +1,181 @@
+
+library(shiny)
+library(RMySQL)
+library(DT)
+conn <- dbConnect(RMySQL::MySQL(),dbname = "tfm",host = "localhost",
+                  username = "root",password = "******")
+
+#for deleting too many connections in MYSQL(if connections are more than 16)
+a<-dbListConnections(MySQL())
+for (conn in a)
+  dbDisconnect(conn)
+
+
+
+ui<-
+  
+  navbarPage(
+    title = 'CRUD with Team Fantastic Mobile ;) ->',
+    
+    tabPanel('Create',textInput("customer", "CustomerID"),
+             textInput("contract","ContractID"),
+             actionButton("submit", "Submit"),
+             DT::dataTableOutput("viewsC")),
+    
+    tabPanel('Read',DT::dataTableOutput("viewsR")),
+    
+    tabPanel('Update',
+             textInput("ucustomer", "CustomerID"),
+             textInput("ucontract","ContractID"),
+             actionButton("usubmit", "Submit"),
+             DT::dataTableOutput('viewsU')),
+    
+    tabPanel('Delete',textInput("dcustomer", "CustomerID"),  
+             DT::dataTableOutput('viewsD')),
+    
+    tabPanel('Schema',   imageOutput("schema"))
+  )
+
+
+
+
+
+
+
+
+server <-function(input, output) 
+{
+  
+  
+  conn <- dbConnect(RMySQL::MySQL(),dbname = "tfm",host = "localhost",
+                    username = "root",password = "******")
+  
+  
+  #insery
+  insert<-  function(CustomerID,ContractID)
+  {conn <- dbConnect(RMySQL::MySQL(),dbname = "tfm",host = "localhost",
+                     username = "root",password = "******")
+  
+  sql<-sprintf("insert into sample
+               (CustomerID, ContractID)
+               values ('%s',' %s')",
+               CustomerID,ContractID)
+  dbSendQuery(conn, sql)
+  
+  table1<- dbReadTable(conn = conn,  name = 'sample')
+  
+  return(table1)
+  on.exit(dbDisconnect(conn))
+  
+  
+  }
+  
+  
+  #update---------------------------------------------------------
+  update<-  function(ContractID,CustomerID)
+  {conn <- dbConnect(RMySQL::MySQL(),dbname = "tfm",host = "localhost",
+                     username = "root",password = "******")
+  
+  sql<-sprintf("update sample
+             set ContractID = '%s'
+where customerID = '%s'",
+               ContractID,CustomerID)
+  dbGetQuery(conn, sql)
+  
+  table1<- dbReadTable(conn = conn,  name = 'sample')
+  
+  return(table1)
+  on.exit(dbDisconnect(conn))
+  
+  
+  } 
+  
+  
+  
+  #delete----------------------------------------------------------------------
+  delete<-  function(CustomerID)
+  {conn <- dbConnect(RMySQL::MySQL(),dbname = "tfm",host = "localhost",
+                     username = "root",password = "******")
+  
+  sql<-sprintf("delete from sample
+            where CustomerID = '%s'",
+               CustomerID)
+  dbSendQuery(conn, sql)
+  
+  table1<- dbReadTable(conn = conn,  name = 'sample')
+  
+  return(table1)
+  on.exit(dbDisconnect(conn))
+  
+  
+  }
+  
+  
+  
+  
+
+  
+  observeEvent(input$usubmit,{      
+    update(input$ucontract,input$ucustomer)
+  })
+  
+  observeEvent(input$submit,{      
+    insert(input$customer,input$contract)
+  })
+  
+  observeEvent(input$usubmit,{      
+    delete(input$dcustomer)
+  })
+  
+  
+  
+  
+  output$viewsC <- {
+    DT::renderDataTable(DT::datatable(insert(input$customer,input$contract),
+                                      options= list(pageLength = 15, autoWidth = TRUE)))
+    
+  }
+  
+  
+  
+  
+  output$viewsR <- {table1<- dbReadTable(conn = conn,  name = 'sample')
+  DT::renderDataTable(DT::datatable((table1),
+                                    options= list(pageLength = 15, autoWidth = TRUE)))
+  }
+  
+  
+  
+  
+  output$viewsU <- {
+    DT::renderDataTable(DT::datatable(update(input$ucontract,input$ucustomer),
+                                      options= list(pageLength = 15, autoWidth = TRUE)))
+    
+  }
+  
+  
+  
+  output$viewsD <- {
+    DT::renderDataTable(DT::datatable(delete(input$dcustomer),
+                                      options= list(pageLength = 15, autoWidth = TRUE)))
+    
+  }
+  
+ 
+  
+  
+   
+  output$schema<-renderImage({list(src = "images/Schema.png",
+                                  contentType = "image/png",
+                                  alt = "Schema")},deleteFile = FALSE)
+
+  on.exit(dbDisconnect(conn))
+  
+}
+
+
+
+
+shinyApp(ui=ui,server = server)
+
+
